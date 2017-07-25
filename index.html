@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grade查询</title>
+    <link rel="stylesheet" href="./bootstrap-3.3.7-dist/css/bootstrap.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="./bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <!--<script>-->
+        <!--function insertt(event) {-->
+            <!--alert('balbal');-->
+            <!--event.preventDefault();-->
+            <!--let form = document.getElementById('insert');-->
+            <!--let stu = {name:'',id:0,eth:'',klass:0,grade:{chin:0,math:0,eng:0,code:0}};-->
+            <!--stu.name = form.elements['stuname'];-->
+            <!--stu.id = form.elements['stuid'];-->
+            <!--stu.eth = form.elements['stueth'];-->
+            <!--stu.klass = form.elements['stuklass'];-->
+            <!--stu.grade.chin = parseFloat(form.elements['chin']);-->
+            <!--stu.grade.math = parseFloat(form.elements['math']);-->
+            <!--stu.grade.eng = parseFloat(form.elements['eng']);-->
+            <!--stu.grade.code = parseFloat(form.elements['code']);-->
+            <!--obj.push(stu);-->
+            <!--str = JSON.stringify(obj);-->
+            <!--myStorage.setItem('stuIfoList',str);-->
+            <!--let newtd =-->
+                <!--"<tr>" +-->
+                <!--"<td>"+stu.name+"</td>" +-->
+                <!--"<td>"+stu.id+"</td>" +-->
+                <!--"<td>"+stu.eth+"</td>" +-->
+                <!--"<td>"+stu.klass+"</td>" +-->
+                <!--"<td>"+stu.grade.chin+"</td>" +-->
+                <!--"<td>"+stu.grade.math+"</td>" +-->
+                <!--"<td>"+stu.grade.eng+"</td>" +-->
+                <!--"<td>"+stu.grade.code+"</td>" +-->
+                <!--"</tr>";-->
+            <!--$('.table').append(newtd);-->
+        <!--}-->
+    <!--</script>-->
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.svg">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#example-navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Coco</a>
+        </div>
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">HOME</a></li>
+                <li><a href="#form">INSERT</a></li>
+                <li><a href="#selectIfo">SELECT</a></li>
+                <li><a href="#">DELETE</a></li>
+                <li><a href="#">UPDATE</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div>
+        <table class="table table-hover" id="allIfo">
+            <tr id = 'content'>
+                <th>姓名</th><th>学号</th><th>民族</th><th>班级</th><th>语文</th><th>英语</th><th>数学</th><th>编程</th>
+            </tr>
+        </table>
+    </div>
+    <!--<a href="javascript:showStuIfo(stuIfo)">...</a>-->
+</div>
+<hr class="featurette-divider">
+<div id="form" class="container">
+    <form id="insertStuIfo" name="insertStuIfo">
+        <div class="form-group ">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="name">姓名</label>
+                    <input class="form-control" type="text" name="stuname" id="name" placeholder="郑永可">
+                </div>
+                <div class="col-md-6">
+                    <label for="id">学号</label>
+                    <input class="form-control" type="text" name="stuid" id="id" placeholder="2015211007">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="eth">民族</label>
+                    <select class="form-control" class="form-control" name="stueth" id="eth">
+                        <option value="汉" selected>汉族</option>
+                        <option value="藏">藏族</option>
+                        <option value="满">满族</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="klass">班级</label>
+                    <select class="form-control" name="stuklass" id="klass">
+                        <option value="1501" selected>1501</option>
+                        <option value="1502">1502</option>
+                        <option value="1503">1503</option>
+                        <option value="1504">1504</option>
+                        <option value="1505">1505</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class=row>
+            <div class="col-md-3">
+                <label for="chin">语文</label>
+                <input class="form-control" type="text" name="chin" id="chin">
+            </div>
+            <div class="col-md-3">
+                <label for="math">数学</label>
+                <input class="form-control" type="text" name="math" id="math">
+            </div>
+            <div class="col-md-3">
+                <label for="eng">英语</label>
+                <input class="form-control" type="text" name="eng" id="eng">
+            </div>
+            <div class="col-md-3">
+                <label for="code">编程</label>
+                <input class="form-control" type="text" name="code" id="code">
+            </div>
+        </div>
+        <!--<input class="form-control" type="submit" id="submit" value="提交" onclick="insert()">-->
+        <button type="submit" class="btn btn-default" id="submit1">提交</button>
+    </form>
+</div>
+<hr class="featurette-divider">
+<div id="selectIfo" class="container">
+    <form class="form-inline" id="selectIfOne">
+        <div class="form-group">
+            <label for="exampleInputName2">ID</label>
+            <input type="text" class="form-control" id="exampleInputName2" placeholder="例如：2015211007">
+        </div>
+        <button type="submit" class="btn btn-default" id="submit2">
+            <span class="glyphicon glyphicon-search"></span>
+        </button>
+    </form>
+    <div>
+        <table class="table table-hover" id="selectTab">
+            <tr id = 'selectContent'>
+                <th>姓名</th><th>学号</th><th>民族</th><th>班级</th><th>语文</th><th>英语</th><th>数学</th><th>编程</th>
+            </tr>
+        </table>
+    </div>
+</div>
+<script type="text/javascript" src="index.js"></script>
+</body>
+</html>
