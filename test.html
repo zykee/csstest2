@@ -1,43 +1,95 @@
-<HTML>
-<HEAD>
-    <title>动态添加/删除HTML元素</title>
-    <script language="javascript">
-        let count= 0 ;
-        let maxfile = 5;
-        增加元素
-        function addUpload() {
-            if(count >= maxfile) return;//限制最多maxfile个文件框
-            count++;
-//自增id不同的HTML对象，并附加到容器最后
-            let newDiv = "<div id=divUpload" + count +">"
-                + " <input id=file" + count + " type=file size=50 name=upload>"
-                + " <a href=javascript:delUpload('divUpload" + count + "');>删除</a>"
-                + " </div>";
-            document.getElementById("uploadContent").insertAdjacentHTML("beforeEnd", newDiv);
+<!DOCTYPE html >
+<html >
+<head>
+    <meta charset="utf-8" />
+    <title>可编辑表格</title>
+    <script>
+        function addRow(){
+            var oTable = document.getElementById("oTable");
+            var tBodies = oTable.tBodies;
+            var tbody = tBodies[0];
+            var tr = tbody.insertRow(tbody.rows.length);
+            var td_1 = tr.insertCell(0);
+            td_1.innerHTML = "<div contenteditable='true'>第1列</div>";
+            var td_2 = tr.insertCell(1);
+            td_2.innerHTML = "<div contenteditable='true'>第2列</div>";
         }
-        //删除指定元素
-        function delUpload(diva) {
-            count--;
-            document.getElementById(diva).parentNode.removeChild(document.getElementById(diva));
-        }
+
     </script>
-</HEAD>
-<body MS_POSITIONING="GridLayout">
-<form id="Form1" method="post" runat="server" enctype="multipart/form-data">
-    <div>
-        <table>
-            <tr>
-                <td id="tdRrmove" width="2000">
-                    <!--承接整个file文件框的HTML容器-->
-                    <div id="uploadContent">
-                        <!--默认的file文件框
-                        <div id=div1><input id=file1 type=file size=50 name=upload></div>-->
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <a href="javascript:addUpload()">添加附件</a>
-</form>
+</head>
+<body>
+<fieldset>
+    <legend>可编辑的表格</legend>
+    <table id="oTable" style="background-color:#eeeeee;" bordercolor="#aaaaaa" border="1" cellpadding="0" cellpadding="2" width="100%">
+        <thead>
+        <tr>
+            <th>第一列标题</th>
+            <th>第二列标题</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><div contenteditable="true">第一行第一列</div></td>
+            <td><div contenteditable="true">第一行第二列</div></td>
+        </tr>
+        </tbody>
+    </table>
+</fieldset>
+<input type="button" onClick="addRow();" style="font-size:16px;" value="+"/>
 </body>
-</HTML>
+</html>
+<!--<div>-->
+    <!--<form id="insertStuIfo" name="insertStuIfo">-->
+        <!--<div class="form-group ">-->
+            <!--<div class="row">-->
+                <!--<div class="col-md-6">-->
+                    <!--<label for="updname">姓名</label>-->
+                    <!--<input class="form-control" type="text" id="updname" value="${stu.name}">-->
+                <!--</div>-->
+                <!--<div class="col-md-6">-->
+                    <!--<label for="updid">学号</label>-->
+                    <!--<input class="form-control" type="text" id="updid" value="${stu.id}">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+                <!--<div class="col-md-6">-->
+                    <!--<label for="updeth">民族</label>-->
+                    <!--<select class="form-control" name="stueth" id="updeth">-->
+                        <!--<option value="汉" selected>汉族</option>-->
+                        <!--<option value="藏">藏族</option>-->
+                        <!--<option value="满">满族</option>-->
+                        <!--<option value="其他">其他</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+                <!--<div class="col-md-6">-->
+                    <!--<label for="updklass">班级</label>-->
+                    <!--<select class="form-control" name="stuklass" id="updklass">-->
+                        <!--<option value="1501" selected>1501</option>-->
+                        <!--<option value="1502">1502</option>-->
+                        <!--<option value="1503">1503</option>-->
+                        <!--<option value="1504">1504</option>-->
+                        <!--<option value="1505">1505</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class=row>-->
+            <!--<div class="col-md-3">-->
+                <!--<label for="updchin">语文</label>-->
+                <!--<input class="form-control" type="text" name="chin" id="updchin" value="${stu.grade.chin}">-->
+            <!--</div>-->
+            <!--<div class="col-md-3">-->
+                <!--<label for="updmath">数学</label>-->
+                <!--<input class="form-control" type="text" name="math" id="updmath" value="${stu.grade.math}">-->
+            <!--</div>-->
+            <!--<div class="col-md-3">-->
+                <!--<label for="updeng">英语</label>-->
+                <!--<input class="form-control" type="text" name="eng" id="updeng" value="${stu.grade.eng}">-->
+            <!--</div>-->
+            <!--<div class="col-md-3">-->
+                <!--<label for="updcode">编程</label>-->
+                <!--<input class="form-control" type="text" name="code" id="updcode" value="${stu.grade.code}">-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</form>-->
+<!--</div>-->

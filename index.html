@@ -4,39 +4,9 @@
     <meta charset="UTF-8">
     <title>Grade查询</title>
     <link rel="stylesheet" href="./bootstrap-3.3.7-dist/css/bootstrap.css">
-    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="./jquery.min.js"></script>
     <script src="./bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-    <!--<script>-->
-        <!--function insertt(event) {-->
-            <!--alert('balbal');-->
-            <!--event.preventDefault();-->
-            <!--let form = document.getElementById('insert');-->
-            <!--let stu = {name:'',id:0,eth:'',klass:0,grade:{chin:0,math:0,eng:0,code:0}};-->
-            <!--stu.name = form.elements['stuname'];-->
-            <!--stu.id = form.elements['stuid'];-->
-            <!--stu.eth = form.elements['stueth'];-->
-            <!--stu.klass = form.elements['stuklass'];-->
-            <!--stu.grade.chin = parseFloat(form.elements['chin']);-->
-            <!--stu.grade.math = parseFloat(form.elements['math']);-->
-            <!--stu.grade.eng = parseFloat(form.elements['eng']);-->
-            <!--stu.grade.code = parseFloat(form.elements['code']);-->
-            <!--obj.push(stu);-->
-            <!--str = JSON.stringify(obj);-->
-            <!--myStorage.setItem('stuIfoList',str);-->
-            <!--let newtd =-->
-                <!--"<tr>" +-->
-                <!--"<td>"+stu.name+"</td>" +-->
-                <!--"<td>"+stu.id+"</td>" +-->
-                <!--"<td>"+stu.eth+"</td>" +-->
-                <!--"<td>"+stu.klass+"</td>" +-->
-                <!--"<td>"+stu.grade.chin+"</td>" +-->
-                <!--"<td>"+stu.grade.math+"</td>" +-->
-                <!--"<td>"+stu.grade.eng+"</td>" +-->
-                <!--"<td>"+stu.grade.code+"</td>" +-->
-                <!--"</tr>";-->
-            <!--$('.table').append(newtd);-->
-        <!--}-->
-    <!--</script>-->
+    <script src="./layer/layer.js"></script>
     <link rel="stylesheet" href="bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.svg">
 </head>
 <body>
@@ -57,16 +27,21 @@
                 <li class="active"><a href="#">HOME</a></li>
                 <li><a href="#form">INSERT</a></li>
                 <li><a href="#selectIfo">SELECT</a></li>
-                <li><a href="#">DELETE</a></li>
-                <li><a href="#">UPDATE</a></li>
+                <li><a href="#deleteIfOne">DELETE</a></li>
+                <li><a href="#selectIfo">UPDATE</a></li>
             </ul>
         </div>
     </nav>
     <div>
         <table class="table table-hover" id="allIfo">
-            <tr id = 'content'>
-                <th>姓名</th><th>学号</th><th>民族</th><th>班级</th><th>语文</th><th>英语</th><th>数学</th><th>编程</th>
-            </tr>
+            <thead id="allHead">
+                <tr id = 'content'>
+                    <th>姓名</th><th>学号</th><th>民族</th><th>班级</th><th>语文</th><th>英语</th><th>数学</th><th>编程</th>
+                </tr>
+            </thead>
+            <tbody id="allBody">
+
+            </tbody>
         </table>
     </div>
     <!--<a href="javascript:showStuIfo(stuIfo)">...</a>-->
@@ -88,7 +63,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="eth">民族</label>
-                    <select class="form-control" class="form-control" name="stueth" id="eth">
+                    <select class="form-control" name="stueth" id="eth">
                         <option value="汉" selected>汉族</option>
                         <option value="藏">藏族</option>
                         <option value="满">满族</option>
@@ -139,15 +114,53 @@
         <button type="submit" class="btn btn-default" id="submit2">
             <span class="glyphicon glyphicon-search"></span>
         </button>
+        <button type="submit" class="btn btn-default" id="submit5">
+            <span class="glyphicon glyphicon-pencil"></span>
+        </button>
     </form>
     <div>
         <table class="table table-hover" id="selectTab">
-            <tr id = 'selectContent'>
-                <th>姓名</th><th>学号</th><th>民族</th><th>班级</th><th>语文</th><th>英语</th><th>数学</th><th>编程</th>
-            </tr>
+            <thead id="selectHead">
+                <tr id = 'selectContent'>
+                    <th>姓名</th><th>学号</th><th>民族</th><th>班级</th><th>语文</th><th>英语</th><th>数学</th><th>编程</th>
+                </tr>
+            </thead>
+            <tbody id="selectBody">
+
+            </tbody>
         </table>
     </div>
 </div>
+<hr class="featurette-divider">
+<div class="container">
+    <form class="form-inline" id="deleteIfOne">
+        <div class="form-group">
+            <label for="deleteId">ID</label>
+            <input type="text" class="form-control" id="deleteId" placeholder="例如：2015211007">
+        </div>
+        <button type="submit" class="btn btn-default" id="submit3">
+            <span class="glyphicon glyphicon-trash"></span>
+        </button>
+    </form>
+    <div>
+        <h2>回收站</h2>
+        <table class="table table-hover" id="deleteTab">
+            <thead id="deleteHead">
+            <tr id = 'deleteContent'>
+                <th>姓名</th><th>学号</th><th>民族</th><th>班级</th><th>语文</th><th>英语</th><th>数学</th><th>编程</th>
+            </tr>
+            </thead>
+            <tbody id="deleteBody">
+
+            </tbody>
+        </table>
+    </div>
+    <button type="submit" class="btn btn-default" id="submit4">
+        清空回收站
+        <span class="glyphicon glyphicon-trash"></span>
+    </button>
+</div>
+<hr class="featurette-divider">
 <script type="text/javascript" src="index.js"></script>
 </body>
 </html>
